@@ -294,8 +294,8 @@ impl InstalledFlowServer {
             }
         });
         let addr: std::net::SocketAddr = match port {
-            Some(port) => ([127, 0, 0, 1], port).into(),
-            None => ([127, 0, 0, 1], 0).into(),
+            Some(port) => ([0, 0, 0, 0], port).into(),
+            None => ([0, 0, 0, 0], 0).into(),
         };
         let server = hyper::server::Server::try_bind(&addr)?;
         let server = server.http1_only(true).serve(service);
